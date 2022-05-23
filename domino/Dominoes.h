@@ -75,7 +75,10 @@ void searchSkippingMove(int** player1, int** player2, int size, bool& flag, int 
 			availableMove = searchAvailableMove(player1, field);
 
 			if (availableMove.empty())
+			{
 				motion = 1;
+				iteration++;
+			}
 			else
 			{
 
@@ -95,9 +98,10 @@ void searchSkippingMove(int** player1, int** player2, int size, bool& flag, int 
 
 						field[side1]++;
 						field[side2]--;
+						player1[side1][side2] = 1;
 					}
 
-					else
+					if(field[side2] > 0)
 					{
 						field[side2]--;
 						field[side1]++;
@@ -105,6 +109,7 @@ void searchSkippingMove(int** player1, int** player2, int size, bool& flag, int 
 
 						field[side2]++;
 						field[side1]--;
+						player1[side1][side2] = 1;
 					}
 
 				}
@@ -141,9 +146,10 @@ void searchSkippingMove(int** player1, int** player2, int size, bool& flag, int 
 
 						field[side1]++;
 						field[side2]--;
+						player2[side1][side2] = 1;
 					}
 
-					else
+					if (field[side2] > 0)
 					{
 						field[side2]--;
 						field[side1]++;
@@ -151,6 +157,7 @@ void searchSkippingMove(int** player1, int** player2, int size, bool& flag, int 
 
 						field[side2]++;
 						field[side1]--;
+						player2[side1][side2] = 1;
 					}
 
 				}
